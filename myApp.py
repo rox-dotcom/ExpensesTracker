@@ -1,13 +1,23 @@
+from dotenv import load_dotenv
 from flask import Flask
 import mysql.connector
+import os
 
 app = Flask(__name__)
 
+load_dotenv()
+
+# Access the variables
+db_host = os.getenv("DB_HOST")
+db_user = os.getenv("DB_USER")
+db_password = os.getenv("DB_PASSWORD")
+db_name = os.getenv("DB_NAME")
+
 db = mysql.connector.connect(
-    host= "localhost",
-    user= "root",
-    password= "ShAmp00x!",
-    database= "expensesregister"
+    host= os.getenv("DB_HOST"),
+    user= os.getenv("DB_USER"),
+    password= os.getenv("DB_PASSWORD"),
+    database= os.getenv("DB_NAME")
 )
 
 mycursor = db.cursor()
